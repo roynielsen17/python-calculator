@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>360</width>
+    <height>520</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>360</width>
+    <height>520</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>360</width>
+    <height>520</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#centralwidget {
+    border-image: url(:/images/background-1.png)
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">/* Base Style: All Buttons &amp; Numbers */
+QPushButton {
+    background-color: #1a162b;
+    color: #ffffff;                             /* Crisp bright white text */
+    font-family: &quot;Segoe UI&quot;, &quot;Consolas&quot;, sans-serif;
+    font-size: 30px;                            /* Bigger, bolder text */
+    font-weight: 700;                           /* Extra bold weight */
+    border: 1px solid #2d2644;
+    border-radius: 12px;
+}
+
+/* Hover Effect: Text Glows Light Cyan */
+QPushButton:hover {
+    background-color: #26203e;
+    border: 1px solid #00f2fe;
+    color: #00f2fe;                             /* Text lights up on hover! */
+}
+
+QPushButton:pressed {
+    background-color: #120e20;
+    color: #ffffff;
+}
+
+/* -------------------------------------------------- */
+/* SPECIAL NEON GLOWS FOR TEXT &amp; BORDERS              */
+/* -------------------------------------------------- */
+
+/* Top Function Keys (C, (), .) */
+#btn_clear, #btn_bracket, #btn_dot {
+    background-color: rgba(0, 242, 254, 0.08);
+    color: #00f2fe;                             /* Neon Cyan Text */
+    font-size: 30px;
+    font-weight: 800;
+    border: 1px solid rgba(0, 242, 254, 0.4);
+}
+
+#btn_clear:hover, #btn_bracket:hover, #btn_dot:hover {
+    background-color: rgba(0, 242, 254, 0.25);
+    border: 1px solid #00f2fe;
+    color: #ffffff;
+}
+
+/* Operator Keys (÷, ×, -, +) */
+#btn_div, #btn_mul, #btn_sub, #btn_add {
+    background-color: rgba(225, 0, 255, 0.08);
+    color: #ff007f;                             /* Neon Magenta Text */
+    font-size: 30px;                            /* Slightly larger for operator symbols */
+    font-weight: 800;
+    border: 1px solid rgba(225, 0, 255, 0.4);
+}
+
+#btn_div:hover, #btn_mul:hover, #btn_sub:hover, #btn_add:hover {
+    background-color: rgba(225, 0, 255, 0.25);
+    border: 1px solid #ff007f;
+    color: #ffffff;
+}
+
+/* Equals Key (=) */
+#btn_equal {
+    background: qlineargradient(
+        spread:pad, x1:0, y1:0, x2:1, y2:0, 
+        stop:0 #00f2fe, 
+        stop:1 #ff007f
+    );
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 900;
+    border: none;
+}</string>
+   </property>
+   <widget class="QLineEdit" name="display">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>50</y>
+      <width>281</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit#display {
+    background-color: rgba(20, 15, 38, 0.85);
+    color: #ffffff;
+    font-family: &quot;Segoe UI&quot;, sans-serif;
+    font-size: 36px;
+    font-weight: bold;
+    border: 1px solid rgba(0, 242, 254, 0.4);
+    border-radius: 14px;
+    padding: 12px 16px;
+}</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_clear">
+    <property name="geometry">
+     <rect>
+      <x>41</x>
+      <y>151</y>
+      <width>65</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>60</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>C</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_bracket">
+    <property name="geometry">
+     <rect>
+      <x>112</x>
+      <y>151</y>
+      <width>65</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>60</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>( )</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_div">
+    <property name="geometry">
+     <rect>
+      <x>183</x>
+      <y>151</y>
+      <width>65</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>60</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>/</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_add">
+    <property name="geometry">
+     <rect>
+      <x>255</x>
+      <y>151</y>
+      <width>65</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>60</width>
+      <height>60</height>
+     </size>
+    </property>
+    <property name="text">
+     <string>+</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_0">
+    <property name="geometry">
+     <rect>
+      <x>41</x>
+      <y>430</y>
+      <width>135</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0        </string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_1">
+    <property name="geometry">
+     <rect>
+      <x>41</x>
+      <y>360</y>
+      <width>65</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>1</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_2">
+    <property name="geometry">
+     <rect>
+      <x>112</x>
+      <y>360</y>
+      <width>65</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>2</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_3">
+    <property name="geometry">
+     <rect>
+      <x>183</x>
+      <y>360</y>
+      <width>65</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>3</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_equal">
+    <property name="geometry">
+     <rect>
+      <x>255</x>
+      <y>360</y>
+      <width>65</width>
+      <height>130</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>=</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_dot">
+    <property name="geometry">
+     <rect>
+      <x>183</x>
+      <y>430</y>
+      <width>65</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>.</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_sub">
+    <property name="geometry">
+     <rect>
+      <x>255</x>
+      <y>221</y>
+      <width>65</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_7">
+    <property name="geometry">
+     <rect>
+      <x>41</x>
+      <y>221</y>
+      <width>65</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>7</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_9">
+    <property name="geometry">
+     <rect>
+      <x>183</x>
+      <y>221</y>
+      <width>65</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>9</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_8">
+    <property name="geometry">
+     <rect>
+      <x>112</x>
+      <y>221</y>
+      <width>65</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>8</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_5">
+    <property name="geometry">
+     <rect>
+      <x>112</x>
+      <y>291</y>
+      <width>65</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>5</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_4">
+    <property name="geometry">
+     <rect>
+      <x>41</x>
+      <y>291</y>
+      <width>65</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>4</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_mul">
+    <property name="geometry">
+     <rect>
+      <x>255</x>
+      <y>291</y>
+      <width>65</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>*</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_6">
+    <property name="geometry">
+     <rect>
+      <x>183</x>
+      <y>291</y>
+      <width>65</width>
+      <height>59</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string>6</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
