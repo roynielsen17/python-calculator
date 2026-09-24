@@ -123,7 +123,7 @@ def main() -> int:
             print(from_sexagesimal(args.value))
 
         elif args.command == "table":
-            print_conversion_table()
+            print_sexagesimal_conversion_table()
 
     except ValueError as exc:
         parser.error(str(exc))
