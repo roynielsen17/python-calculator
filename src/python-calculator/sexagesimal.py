@@ -2,6 +2,15 @@
 """
 Decimal ↔ pure alphanumeric sexagesimal converter
 Digit set: 0-9a-zA-X  (exactly 60 symbols)
+
+Sexigesimal is the base60 number system the Sumarians and Babalonians
+used.  
+
+https://en.wikipedia.org/wiki/Sexagesimal
+https://knowledgebasedsociety.com/sumerian-sexagesimal-system-and-time-invention/
+
+
+
 """
 
 import argparse
